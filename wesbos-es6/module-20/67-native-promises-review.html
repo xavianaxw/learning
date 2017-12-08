@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>67 - Native Promises Review</title>
+</head>
+<body>
+  <video controls class="webcam"></video>
+  <script>
+
+    // fetch returns a Promise
+    // https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+    fetch('https://api.github.com/users/xavianaxw')
+      .then(res => {
+    
+        // returns a Response
+        // https://developer.mozilla.org/en-US/docs/Web/API/Response
+
+        return res.json();
+
+      })
+      .then(res => {
+
+        // returns JSON of response based on API docs
+        // in this case for /users/:username
+        // https://developer.github.com/v3/users/#get-a-single-user
+
+        console.log(res);
+
+      })
+      .catch(err => {
+        console.error(err);
+      });
+
+    // Another example with getUserMedia
+    const video = document.querySelector('.webcam');
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/mediaDevices
+    // https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+    
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(mediaStream => {
+        video.srcObject = mediaStream;
+        video.load();
+        video.play();
+      })
+      .catch(err => {
+        // if permission not granted - will return NavigatorUserMediaError {name: "PermissionDeniedError", message: "", constraintName: ""}
+        console.error(err.name);
+      });
+
+  </script>
+</body>
+</html>
