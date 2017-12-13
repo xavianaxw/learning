@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Javascript: Currying</title>
+</head>
+
+<body>
+  <script>
+    /* 
+    https://www.sitepoint.com/currying-in-functional-javascript/
+    Currying is a way of constructing functions that allows partial application of a function’s arguments.
+    ======================================================================================================
+    "What this means is that you can pass all of the arguments a function is expecting and get the result, or 
+    pass a subset of those arguments and get a function back that’s waiting for the rest of the arguments."
+    */
+
+    function say(greeting) {
+      return function (name) {
+        console.log(`${greeting}, ${name}`);
+      }
+    }
+
+    const sayHelloTo = say('Hello');
+
+    sayHelloTo('Clint'); // Hello, Clint
+    sayHelloTo('Dillon'); // Hello, 
+    sayHelloTo('Linda');
+
+    // or in shortform
+    say('Sup')('Dawg'); // Sup, Dawg
+
+    // Nested currying
+    function sayAdvanced(greeting) {
+      return function (separator) {
+        return function (emphasis) {
+          return function (name) {
+            console.log(`${greeting}${separator}${name}${emphasis}`);
+          }
+        }
+      }
+    }
+
+    const awkwardHelloTo = sayAdvanced('Hello')(' ... ')('???');
+    awkwardHelloTo('Greg'); // Hello ... Greg???
+
+    const justHelloTo = sayAdvanced('Hello');
+    justHelloTo(', ')('!')('Nalin'); // Hello, Nalin!
+
+    const justHelloWithCommasTo = sayAdvanced('Hello')(', ');
+    justHelloWithCommasTo('!')('George'); // Hello, George!
+
+  </script>
+</body>
+
+</html>
