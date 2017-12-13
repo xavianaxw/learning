@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>70 - Async + Await Error Handling</title>
+</head>
+
+<body>
+  <script>
+    function slap(duration) {
+      return new Promise((resolve, reject) => {
+        if (duration < 1000) {
+          reject('You cannot slap someone that fast. Stop lying!'); // reject will trigger catch()
+        }
+        setTimeout(() => {
+          resolve(`You slapped someone in ${duration / 1000} seconds`); // resolve will be return in then()
+        }, duration);
+      });
+    }
+
+    async function doSlap(duration) { // or const doSlap = async function (duration) {
+      console.log('let the slaps begin');
+
+      /*
+      try {
+        const slap1 = await slap(1000);
+        console.log(slap1);
+
+        const slap2 = await slap(2000);
+        console.log(slap2);
+
+        const slap3 = await slap(500);
+        console.log(slap3);
+
+        const slap4 = await slap(3000);
+        console.log(slap4);
+      } catch (err) {
+        console.error(err);
+      }
+
+      or using a higher order function to handle errors globally
+      */
+
+      const slap1 = await slap(1000);
+      console.log(slap1);
+
+      const slap2 = await slap(2000);
+      console.log(slap2);
+
+      const slap3 = await slap(500);
+      console.log(slap3);
+
+      const slap4 = await slap(3000);
+      console.log(slap4);
+
+      console.log('no more slapping!');
+    }
+
+    // doSlap();
+
+    // https://www.sitepoint.com/higher-order-functions-javascript/
+    // https://www.sitepoint.com/currying-in-functional-javascript/
+    // Create a higher order function to log errors labelled by category
+
+    function logErrors(fn) {
+      return function (category) {
+        return fn().catch((err) => {
+          console.error(`[${category}] : ${err}`);
+        });
+      }
+    }
+
+    const enterErrorIn = logErrors(doSlap);
+    enterErrorIn('Main');
+    enterErrorIn('Team');
+  </script>
+</body>
+
+</html>
