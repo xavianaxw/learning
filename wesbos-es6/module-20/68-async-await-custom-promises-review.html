@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>68 - Async Await - Custom Promises Review</title>
+</head>
+
+<body>
+  <script>
+    function slap(duration) {
+      return new Promise((resolve, reject) => {
+        if (duration < 1000) {
+          reject('You cannot slap someone that fast. Stop lying!'); // reject will trigger catch()
+        }
+        resolve(`You slapped someone in ${duration / 1000} seconds`); // resolve will be return in then()
+      });
+    }
+
+    slap(1000).then((res) => { // will be resolved
+      console.log(res);
+      return slap(2000); // will be resolved
+    }).then((res) => {
+      console.log(res);
+      return slap(500); // will be rejected
+    }).then((res) => {
+      console.log(res);
+      return slap(3000); // will be skipped as a catch() is triggered
+    }).catch((error) => {
+      console.error(error); // throws error from promise rejected in slap(500)
+    })
+  </script>
+</body>
+
+</html>
