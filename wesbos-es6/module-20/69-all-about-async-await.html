@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>69 - All About Async + Await</title>
+</head>
+
+<body>
+  <script>
+    function slap(duration) {
+      return new Promise((resolve, reject) => {
+        if (duration < 1000) {
+          reject('You cannot slap someone that fast. Stop lying!'); // reject will trigger catch()
+        }
+        setTimeout(() => {
+          resolve(`You slapped someone in ${duration / 1000} seconds`); // resolve will be return in then()
+        }, duration);
+      });
+    }
+
+    /* 
+    Will return error - Uncaught SyntaxError: await is only valid in async function
+
+    await slap(1000);
+    await slap(1000);
+    await slap(3000);
+    */
+
+    async function doSlap(duration) {
+      console.log('let the slaps begin');
+
+      const slap1 = await slap(1000);
+      console.log(slap1);
+
+      const slap2 = await slap(2000);
+      console.log(slap2);
+
+      const slap3 = await slap(500);
+      console.log(slap3);
+
+      const slap4 = await slap(3000);
+      console.log(slap4);
+
+      console.log('no more slapping!');
+    }
+
+    doSlap();
+  </script>
+</body>
+
+</html>
