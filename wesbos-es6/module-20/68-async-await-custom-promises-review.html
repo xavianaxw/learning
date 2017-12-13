@@ -15,7 +15,9 @@
         if (duration < 1000) {
           reject('You cannot slap someone that fast. Stop lying!'); // reject will trigger catch()
         }
-        resolve(`You slapped someone in ${duration / 1000} seconds`); // resolve will be return in then()
+        setTimeout(() => {
+          resolve(`You slapped someone in ${duration / 1000} seconds`); // resolve will be return in then()
+        }, duration);
       });
     }
 
