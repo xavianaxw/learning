@@ -5,7 +5,11 @@ import { getFunName } from "../helpers";
 class StorePicker extends React.Component {
   gotoStore(e) {
     e.preventDefault();
-    console.log(`You changed the URL ${this.storeInput.value}`);
+
+    const storeId = this.storeInput.value;
+    console.log(`You changed the URL ${storeId}`);
+
+    this.context.router.transitionTo(`/store/${storeId}`);
   }
 
   render() {
@@ -26,5 +30,9 @@ class StorePicker extends React.Component {
     );
   }
 }
+
+StorePicker.contextTypes = {
+  router: React.PropTypes.object,
+};
 
 export default StorePicker;
