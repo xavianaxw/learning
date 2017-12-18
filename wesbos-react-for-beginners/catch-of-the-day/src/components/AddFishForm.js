@@ -11,12 +11,19 @@ class AddFishForm extends React.Component {
       image: this.image.value,
     };
 
-    console.log(fish);
+    this.props.addFish(fish);
+    this.form.reset();
   }
 
   render() {
     return (
-      <form className="fish-edit" onSubmit={e => this.addFish(e)}>
+      <form
+        ref={input => {
+          this.form = input;
+        }}
+        className="fish-edit"
+        onSubmit={e => this.addFish(e)}
+      >
         <input
           ref={input => {
             this.name = input;
