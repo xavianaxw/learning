@@ -19,6 +19,7 @@ class App extends React.Component {
     // bind functions to the component itself
     this.addFish = this.addFish.bind(this);
     this.loadFishes = this.loadFishes.bind(this);
+    this.addToOrder = this.addToOrder.bind(this);
   }
 
   addFish(fishDetails) {
@@ -38,6 +39,15 @@ class App extends React.Component {
     });
   }
 
+  addToOrder(fishKey) {
+    const orders = { ...this.state.orders };
+    orders[fishKey] = orders[fishKey] + 1 || 1;
+
+    this.setState({
+      orders,
+    });
+  }
+
   render() {
     return (
       <div className="catch-of-the-day">
@@ -45,7 +55,14 @@ class App extends React.Component {
           <Header tagline="Fresh Seafood Market" />
           <ul className="list-of-fishes">
             {Object.keys(this.state.fishes).map(key => {
-              return <Fish key={key} details={this.state.fishes[key]} />;
+              return (
+                <Fish
+                  key={key}
+                  index={key}
+                  details={this.state.fishes[key]}
+                  addToOrder={this.addToOrder}
+                />
+              );
             })}
           </ul>
         </div>
