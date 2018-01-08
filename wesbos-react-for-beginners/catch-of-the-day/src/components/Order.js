@@ -25,7 +25,9 @@ class Order extends React.Component {
     }
 
     // if not available
-    return <li>Sorry, {fish ? fish.name : "fish"} was not found</li>;
+    return (
+      <li key={fishKey}>Sorry, {fish ? fish.name : "fish"} was not found</li>
+    );
   }
 
   render() {
