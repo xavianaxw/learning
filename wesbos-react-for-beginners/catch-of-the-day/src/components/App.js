@@ -29,6 +29,25 @@ class App extends React.Component {
       context: this,
       state: "fishes",
     });
+
+    const localStorageRef = localStorage.getItem(
+      `order-${this.props.params.storeId}`
+    );
+
+    if (localStorageRef) {
+      this.setState({
+        orders: JSON.parse(
+          localStorage.getItem(`order-${this.props.params.storeId}`)
+        ),
+      });
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem(
+      `order-${this.props.params.storeId}`,
+      JSON.stringify(nextState.orders)
+    );
   }
 
   componentWillUnmount() {
