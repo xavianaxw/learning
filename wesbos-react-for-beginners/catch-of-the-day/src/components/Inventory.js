@@ -57,6 +57,13 @@ class Inventory extends React.Component {
           value={this.props.fishes[fishKey].image}
           onChange={e => this.handleOnChange(e, fishKey)}
         />
+        <button
+          onClick={() => {
+            this.props.removeFish(fishKey);
+          }}
+        >
+          Remove Fish
+        </button>
       </form>
     );
   }

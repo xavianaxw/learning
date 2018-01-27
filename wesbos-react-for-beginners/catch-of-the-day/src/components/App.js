@@ -20,6 +20,7 @@ class App extends React.Component {
     // bind functions to the component itself
     this.addFish = this.addFish.bind(this);
     this.updateFish = this.updateFish.bind(this);
+    this.removeFish = this.removeFish.bind(this);
     this.loadFishes = this.loadFishes.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
   }
@@ -75,6 +76,12 @@ class App extends React.Component {
     this.setState({ fishes });
   }
 
+  removeFish(fishKey) {
+    const fishes = { ...this.state.fishes };
+    fishes[fishKey] = null;
+    this.setState({ fishes });
+  }
+
   loadFishes() {
     this.setState({
       fishes: sampleFishes,
@@ -112,6 +119,7 @@ class App extends React.Component {
         <Inventory
           addFish={this.addFish}
           updateFish={this.updateFish}
+          removeFish={this.removeFish}
           loadFishes={this.loadFishes}
           fishes={this.state.fishes}
         />
