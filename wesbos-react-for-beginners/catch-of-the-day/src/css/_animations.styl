@@ -5,3 +5,55 @@
   appear Must set transitionAppear={true} on animation component
 */
 
+.order-enter {
+  opacity: 0;
+  transition all 0.5s;
+  transform translateX(-100%);
+  max-height 0
+  padding 0 !important
+
+  &.order-enter-active {
+    opacity: 1;
+    background-color: transparent;  
+    transform translateX(0);
+    max-height 60px;
+    padding 2rem 0 !important
+  }  
+}
+
+.order-leave {
+  opacity: 1;
+  background-color: transparent;  
+  transform translateX(0);
+  max-height 60px;
+  padding 2rem 0 !important
+  transition all 0.5s;
+
+  &.order-leave-active {
+    opacity: 0;
+    max-height 0;
+    padding 0 !important;
+    transform translateX(100%);
+  }
+}
+
+.count-enter {
+  transition all .25s
+  transform translateY(100%)
+
+  &.count-enter-active {
+    transform translateY(0);
+  }
+}
+
+.count-leave {
+  transition all .25s
+  position absolute
+  bottom 0
+  left 0
+  transform translateY(0)
+
+  &.count-leave-active {
+    transform translateY(-100%)
+  }
+}
