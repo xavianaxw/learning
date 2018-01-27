@@ -19,6 +19,7 @@ class App extends React.Component {
 
     // bind functions to the component itself
     this.addFish = this.addFish.bind(this);
+    this.updateFish = this.updateFish.bind(this);
     this.loadFishes = this.loadFishes.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
   }
@@ -65,6 +66,15 @@ class App extends React.Component {
     });
   }
 
+  updateFish(fishKey, updatedFish) {
+    const fishes = {
+      ...this.state.fishes,
+      [fishKey]: updatedFish,
+    };
+
+    this.setState({ fishes });
+  }
+
   loadFishes() {
     this.setState({
       fishes: sampleFishes,
@@ -99,7 +109,12 @@ class App extends React.Component {
           </ul>
         </div>
         <Order fishes={this.state.fishes} orders={this.state.orders} />
-        <Inventory addFish={this.addFish} loadFishes={this.loadFishes} />
+        <Inventory
+          addFish={this.addFish}
+          updateFish={this.updateFish}
+          loadFishes={this.loadFishes}
+          fishes={this.state.fishes}
+        />
       </div>
     );
   }
