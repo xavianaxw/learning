@@ -22,7 +22,9 @@ class App extends React.Component {
     this.updateFish = this.updateFish.bind(this);
     this.removeFish = this.removeFish.bind(this);
     this.loadFishes = this.loadFishes.bind(this);
+
     this.addToOrder = this.addToOrder.bind(this);
+    this.removeFromOrder = this.removeFromOrder.bind(this);
   }
 
   // Event Lifecycles
@@ -79,7 +81,10 @@ class App extends React.Component {
   removeFish(fishKey) {
     const fishes = { ...this.state.fishes };
     fishes[fishKey] = null;
-    this.setState({ fishes });
+
+    this.setState({
+      fishes,
+    });
   }
 
   loadFishes() {
@@ -91,6 +96,15 @@ class App extends React.Component {
   addToOrder(fishKey) {
     const orders = { ...this.state.orders };
     orders[fishKey] = orders[fishKey] + 1 || 1;
+
+    this.setState({
+      orders,
+    });
+  }
+
+  removeFromOrder(fishKey) {
+    const orders = { ...this.state.orders };
+    delete orders[fishKey];
 
     this.setState({
       orders,
@@ -115,7 +129,11 @@ class App extends React.Component {
             })}
           </ul>
         </div>
-        <Order fishes={this.state.fishes} orders={this.state.orders} />
+        <Order
+          fishes={this.state.fishes}
+          orders={this.state.orders}
+          removeFromOrder={this.removeFromOrder}
+        />
         <Inventory
           addFish={this.addFish}
           updateFish={this.updateFish}
