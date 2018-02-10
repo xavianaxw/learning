@@ -38,7 +38,6 @@ class Inventory extends React.Component {
   }
 
   authenticate(provider) {
-    console.log(`Trying to log in as ${provider}`);
     base.authWithOAuthPopup(provider, this.authHandler);
   }
 
@@ -58,13 +57,13 @@ class Inventory extends React.Component {
       // if no owner
       if (!data.owner) {
         storeRef.set({
-          owner: authData.user.email,
+          owner: authData.user.uid,
         })
       }
 
       this.setState({
-        uid: authData.user.email,
-        owner: data.owner || authData.user.email,
+        uid: authData.user.uid,
+        owner: data.owner || authData.user.uid,
       });
     });
   }
