@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, max-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dynamic Table | Wes Bos's CSS Grids Course</title>
+  <link rel="stylesheet" href="http://localhost:3000/assets/style.css"/>
+</head>
+<body>
+  
+  <h1>Dynamic Table with Grid Sizing</h1>
+
+  <div class="table">
+    <div class="table-item index">01</div>
+    <div class="table-item desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A cum nostrum fugiat, eligendi nisi, nemo commodi temporibus animi laborum necessitatibus nulla incidunt architecto dolores distinctio eveniet ut quaerat voluptatem facilis.</div>
+    <div class="table-item qty no-link">03</div>
+    
+
+    <div class="table-item index">02</div>
+    <div class="table-item desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A cum nostrum fugiat, eligendi nisi, nemo commodi temporibus animi laborum necessitatibus nulla incidunt architecto dolores distinctio eveniet ut quaerat voluptatem facilis.</div>
+    <div class="table-item qty">03</div>
+    <div class="table-item link">04</div>
+  </div>
+
+  <style>
+  
+    .table {
+      color: var(--white);
+      display: grid;
+      grid-gap: 8px;
+      grid-template-columns: 50px 1fr 80px 80px;
+    }
+
+    .table .table-item {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .table .table-item.qty {
+      justify-content: start;
+    }
+
+    .table .table-item.qty.no-link {
+      grid-column: span 2;
+    }
+
+  </style>
+
+</body>
+</html>

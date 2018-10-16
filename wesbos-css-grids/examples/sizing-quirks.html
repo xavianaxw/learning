@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, max-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sizing Quirks | Wes Bos's CSS Grids Course</title>
+  <link rel="stylesheet" href="http://localhost:3000/assets/style.css"/>
+</head>
+<body>
+  
+  <h1>Sizing Quirks</h1>
+
+  <div class="container">
+    <div class="item  item--01">01</div>
+    <div class="item  item--02">02</div>
+    <div class="item  item--03">03</div>
+    <div class="item  item--04">04</div>
+    <div class="item  item--05">05</div>
+    <div class="item  item--06">06</div>
+    <div class="item  item--07">07</div>
+    <div class="item  item--08">08</div>
+    <div class="item  item--09">09</div>
+    <div class="item  item--10">10</div>
+    <div class="item  item--11">11</div>
+    <div class="item  item--12">12</div>
+    <div class="item  item--13">13</div>
+    <div class="item  item--14">14</div>
+    <div class="item  item--15">15</div>
+    <div class="item  item--16">16</div>
+    <div class="item  item--17">17</div>
+    <div class="item  item--18">18</div>
+    <div class="item  item--19">19</div>
+    <div class="item  item--20">20</div>
+    <div class="item  item--21">21</div>
+    <div class="item  item--22">22</div>
+    <div class="item  item--23">23</div>
+    <div class="item  item--24">24</div>
+    <div class="item  item--25">25</div>
+    <div class="item  item--26">26</div>
+    <div class="item  item--27">27</div>
+    <div class="item  item--28">28</div>
+    <div class="item  item--29">29</div>
+    <div class="item  item--30">30</div>
+  </div>
+
+  <style>
+  
+    .container {
+      display: grid;
+      grid-gap: 8px;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .item.item--09 {
+      background-color: white;
+      grid-column: span 10;
+    }
+
+  </style>
+
+</body>
+</html>
